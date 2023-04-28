@@ -1,0 +1,224 @@
+  >> Math Functions
+
+    - abs(Number[Required])
+    --- Absolute Value => Non Negative Value
+
+    - mt_rand(min[Optional], max[Optional]) || rand(min[Optional], max[Optional])
+    --- mt_getrandmax() => Show Largest Possible Random Value
+    --- Generate Random Value Via The Mersenne Twister Random Number Generator Algorithm
+
+    - intdiv(dividend[Required], divisor[Required])
+    --- Integer Division
+    --- intdiv vs /
+
+    - fmod(dividend[Required], divisor[Required])
+    --- Floating Point Remainder (Modulo)
+    --- fmod vs %
+
+    - ceil(Number[Required])
+    --- Round Up To Integer
+
+    - floor(Number[Required])
+    --- Round Down To Integer
+
+    - round(Number[Required], Precision[Optional], Mode[Optional])
+    --- Round Up To Integer
+    --- Mode
+    ------ PHP_ROUND_HALF_UP
+    ------ PHP_ROUND_HALF_DOWN
+    ------ PHP_ROUND_HALF_EVEN
+    ------ PHP_ROUND_HALF_ODD
+
+    - sqrt(Number[Required])
+    --- Square Root
+
+    - min(array[Required]) || min(Values[Required])
+    --- Find Lowest Value
+
+    - max(array[Required]) || min(Values[Required])
+    --- Find Highest Value
+
+==================================================================
+
+>> Filter Functions
+
+    - filter_list()
+    --- Returns A List Of All Supported Filters
+
+    - filter_id(Filter_Name[Required])
+
+    - filter_var(Value[Required], Filter[Optional], Options[Optional])
+    --- Filters A Variable With A Specified Filter
+
+    - filter_var(Value[Required], Filter[Optional], Options[Optional])
+    --- Validate Filters
+
+    ------ FILTER_VALIDATE_BOOL => [True, 1, Yes, On]
+    ---------- Flag => FILTER_NULL_ON_FAILURE => False For [False, 0, No, Off, ""] Only
+
+    ------ FILTER_VALIDATE_URL
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+    ---------- Flag => FILTER_FLAG_PATH_REQUIRED
+    ---------- Flag => FILTER_FLAG_QUERY_REQUIRED
+
+  var_dump(filter_var($url, FILTER_VALIDATE_URL,
+  ["flags" => FILTER_NULL_ON_FAILURE | FILTER_FLAG_PATH_REQUIRED | FILTER_FLAG_QUERY_REQUIRED]));
+
+    ------ FILTER_VALIDATE_IP
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+    ---------- Flag => FILTER_FLAG_IPV4
+    ---------- Flag => FILTER_FLAG_IPV6
+
+    ------ FILTER_VALIDATE_MAC
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+
+    - filter_var(Value[Required], Filter[Optional], Options[Optional])
+    --- Validate Filters
+
+    ------ FILTER_VALIDATE_EMAIL
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+  
+    ------ FILTER_VALIDATE_INT
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+    ---------- Options => min_range
+    ---------- Options => max_range
+    ---------- Convert To Int On Success
+
+    var_dump(filter_var(
+    $int,
+    FILTER_VALIDATE_INT,
+    ["flags" => FILTER_NULL_ON_FAILURE, "options" => ["min_range" => 50, "max_range" => 100]]
+  ));
+
+    ------ FILTER_VALIDATE_FLOAT
+    ---------- Flag => FILTER_NULL_ON_FAILURE
+    ---------- Options => min_range
+    ---------- Options => max_range
+    ---------- Convert To Float On Success
+
+    - filter_var(Value[Required], Filter[Optional], Options[Optional])
+    --- Sanitize Filters
+
+    ------ FILTER_SANITIZE_EMAIL
+    ------ Remove All But Letters + Digits + !#$%&#038;'*+-=?^_`{|}~@.[]
+    ------ Test ¥
+
+    ------ FILTER_SANITIZE_NUMBER_INT
+    --------- Remove All But Digits, +, -
+
+    ------ FILTER_SANITIZE_NUMBER_FLOAT
+    --------- Remove ALL But Digits, +, - And Optionally [.,eE]
+    --------- Flags => FILTER_FLAG_ALLOW_THOUSAND
+    --------- Flags => FILTER_FLAG_ALLOW_FRACTION
+
+    ------ FILTER_SANITIZE_URL
+    ------ Remove All But Letters + Digits + $-_.+!*'(),{}|\\^~[]`<>#%";/?:@&=.
+    ------ Test ¥ + Space
+
+    - filter_input(Type[Required], Value[Required], Filter[Optional], Options[Optional])
+    --- INPUT_GET
+    --- INPUT_POST
+    --- INPUT_COOKIE
+    --- INPUT_SERVER
+    --- INPUT_ENV
+
+    -- FILTER_VALIDATE_INT
+    -- FILTER_NULL_ON_FAILURE
+=================================================================
+
+ >> File System Functions
+
+    - disk_total_space()
+    --- Get Total Space In Bytes => Then We Can Get [KB, MB, GB]
+
+    - disk_free_space() || diskfreespace()
+    --- Get Free Space In Bytes => Then We Can Get [KB, MB, GB]
+
+    - file_exists(Path)
+    --- Checks If A File Or Directory Exists
+
+    - filesize(File_Name)
+    --- Get Space In Bytes
+
+    - is_dir(Name)
+    --- Tells If The Filename Is A Directory
+
+    - mkdir(Path[Required], Mode[Optional] = 0777, Recursive[Optional], Context[Optional])
+    --- Permissions Is Ignored On Windows
+    --- Permissions Is Octal Number Start With 0
+    ------ Second Number Is => Owner Permission
+    ------ Third Number Is => User Group Permission
+    ------ Fourth Number Is => Others Permissions
+
+    - rmdir(Name[Required], Context[Optional])
+
+    - chmod(File[Required], Mode[Required])
+    --- Change Mode
+
+    - fileperms(Name)
+    --- Gets File Permissions
+
+    - clearstatcache()
+    --- Clear Cache
+
+    - You Can Change Owner chown()
+    - You Can Change Group chgrp()
+
+    - basename(Path[Required], Suffix[Optional])
+    --- Returns Trailing Name Component Of Path
+
+    - dirname(Path[Required], Levels[Optional] = 1)
+    --- Returns A Parent Directory's Path
+    --- Levels => Number of Parent Directories To Go Up
+
+    - realpath(Path[Required])
+    --- Returns Absolute Path
+
+    - pathinfo(Path[Required], Flags[Optional]) => Return Array
+    --- PATHINFO_DIRNAME
+    --- PATHINFO_BASENAME
+    --- PATHINFO_EXTENSION
+    --- PATHINFO_FILENAME
+
+    - Fopen(FileName[Required], Mode[Required], IncludePath[Optional], Context[Optional])
+    --- Mode
+    --- [r] For Read => Pointer At The Beginning
+    --- [r+] For Read & Write => Pointer At The Beginning
+    --- [w] For Write => Pointer At The Beginning + Truncate To 0 Length => Create If Not Exists
+    --- [w+] For Read & Write => Pointer At The Beginning + Truncate To 0 Length => Create If Not Exists
+    --- [a] For Write => Pointer At The End + Create If Not Exists
+    --- [a+] For Read & Write => Pointer At The End + Create If Not Exists
+    --- [x] Create + Open For Write => Pointer At The Beginning
+    --- [x+] Create + Open For Read & Write => Pointer At The Beginning
+
+    - fgets(File[Required], Length[Optional])
+    --- Get A Line From An Open File
+    --- Length => Number Of Bytes To Read || End Of Line If No Length
+
+    - fread(File[Required], Length[Required])
+    --- Get A Data From An Open File
+    --- Length => Maximum Number Of Bytes To Read
+
+    - fclose(File[Required])
+    --- Closes An Open File Pointer
+
+    - fwrite(File[Required], String[Required], Length[Optional])
+    --- Write To An Open File
+    --- Length => Maximum Number Of Bytes To Write
+
+  --- [c]
+  ------ For Write
+  ------ Create If Not Exists
+  ------ No Problem If Its Exists
+  ------ No Truncation
+  ------ Pointer At The Beginning
+  --- [c+] For Read &#038; Write
+
+  - file(File[Required], Flag[Optional], Context[Optional])
+  --- Read Entire File Into Array
+  - feof(File[Required])
+  --- Tests For EOF On A File Pointer
+
+
+
+
