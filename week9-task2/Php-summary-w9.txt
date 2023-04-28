@@ -1,0 +1,532 @@
+String Operators
+    - Concatenate Strings
+
+  echo $a . " " . $b . " " . $c;
+
+  define("ELZERO", "1");
+  function testing() {
+    return 1;
+  }
+  echo "{$a} {$b} {$c} " . ELZERO . " " . testing();
+
+  $x = "Elzero ";
+  $x .= "Web"; // $x = $x . "Web" => Elzero Web
+  $x .= " School"; // $x = $x . "School" => Elzero Web School
+
+--------------------------------------------------------------------
+
+- Used To Perform Operations On Values.
+
+    Array Operators
+    - Deal With Arrays
+
+    +     => Union
+    ==    => Equal => Same Key And Value
+    !=    => Not Equal
+    <>    => Not Equal
+    ===   => Identical => Same Key And Value, Same Order, Same Type
+    !==   => Not Identical
+
+  $arr1 = [1 => "A", 2 => "B"];
+  $arr2 = [3 => "C", 4 => "D"];
+  $arr3 = $arr1 + $arr2;
+
+  echo '<pre>';
+  print_r($arr1 + $arr2);
+  print_r($arr3);
+  echo '</pre>';
+
+  $arr4 = [1 => "10", 2 => "20"];
+  $arr5 = [2 => 20, 1 => 10];
+
+  var_dump($arr4 == $arr5); // True
+  echo '<br>';
+  var_dump($arr4 != $arr5); // False
+  echo '<br>';
+  var_dump($arr4 <> $arr5); // False
+  echo '<br>';
+
+  $arr6 = [1 => 100, 2 => 200];
+  $arr7 = [1 => 100, 2 => 200];
+
+  var_dump($arr6 === $arr7); // True
+--------------------------------------------------------------------
+ 
+Error Control Operator
+    - Control The Errors
+
+    @
+    - Variable
+    - File
+    - Include
+
+  $a = 10;
+  $b = @$a or die("Variable Not Found");
+
+  echo "Test $b";
+  echo '<br>';
+
+  // File
+  $f = @file("osama.txt") or die("File Not Found");
+  echo '<pre>';
+  print_r($f);
+  echo '</pre>';
+  echo '<br>';
+
+  // Include
+  (@include("osama_elzero.php")) or die("Include File Not Found");
+---------------------------------------------------------------------
+
+ Operator Precedence
+    - "||" Has A Greater Precedence Than "or"
+    - "&#038;&#038;" Has A Greater Precedence Than "and"
+
+  echo 2 + 4 * 5; // 22
+  echo '<br>';
+  echo (2 + 4) * 5; // 30
+  echo '<br>';
+  echo 10 || false || 0 || [] || ""; // True => 1
+  echo '<br>';
+  echo true; // 1
+  echo '<br>';
+  var_dump(10 || false || 0 || [] || ""); // True
+  echo '<br>';
+  echo 10 || false; // 1
+  echo '<br>';
+
+  $a = 10 || false; // $a = (10 || false) => $a = 1
+  echo $a; // 1
+
+  echo '<br>';
+
+  $b = 10 or false; // ($b = 10) or false
+  echo $b; // 10
+-----------------------------------------------------------
+Control Structure
+    - If, Elseif, Else <= Basics
+
+    Syntax
+    if (Condition) {
+      // If Condition Is True <= Run Me
+    } else {
+      // If Condition Is False <= Run Me
+    }
+---------------------------------------------------------
+// If
+
+  $page = "About";
+
+  if ($page == "About") {
+
+    echo "This Is The Page";
+
+  }
+
+  echo '<br>';
+
+  // If, Else
+
+  $title = "";
+
+  if ($title == "") {
+
+    echo "Unknown Page";
+
+  } else {
+
+    echo $title;
+
+  }
+
+  echo '<br>';
+
+  // If, Elseif, Else
+
+  $lang = "Elzero";
+
+  if ($lang == "Arabic") {
+
+    echo 'مرحبا';
+
+  } elseif ($lang == "English") {
+
+    echo 'Hello';
+
+  } elseif ($lang == "Spanish") {
+
+    echo 'Hola';
+
+  } else {
+
+    echo 'Unknown Language';
+
+  }
+
+-----------------------------------------------------------
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    if ($_POST['lang'] == 'ar') {
+
+      header("Location: ar.php");
+
+      exit();
+
+    } elseif ($_POST['lang'] == 'en') {
+
+      header("Location: en.php");
+
+      exit();
+
+    }
+
+  }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support</title>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <input type="text" name="username">
+      <select name="lang">
+        <option value="ar">Arabic</option>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+      </select>
+      <input type="submit" value="Go">
+    </form>
+  </body>
+</html>
+ -------------------------------------------------------------------
+    - If, Elseif, Else <= Alternate Syntax
+
+    if (10 > 10) echo "Good"; else echo "Bad";
+
+
+<?php if (10 > 5) : ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    Hello Page
+  </body>
+</html>
+
+<?php endif; ?>
+
+if (10 > 10) :
+
+    echo "First";
+
+  elseif (10 > 10) :
+
+    echo "Second";
+
+  else:
+
+    echo "Last";
+
+  endif;
+-------------------------------------------------------------------------
+    - Ternary Operator => Short If
+
+    // Condition ? True : False;
+
+  echo "I Love PHP Because Its A " . ($a > 8 ? "Good" : "Bad") . " Language";
+
+  $result = $a > 8 ? "Good" : "Bad";
+  echo "I Love PHP Because Its A $result Language";
+-------------------------------------------------------------------------
+
+ - Switch
+
+    Syntax
+    switch (expression) {
+      Case 1:
+        // Code Block 1
+        break;
+      Case 2:
+        // Code Block 2
+        break;
+      Case 3:
+      Case 4:
+        // Code Block 3
+        break;
+      Default:
+        // Default Code Block
+    }
+------------------------------------------------------------------
+- Loop
+
+    //While
+
+ $i = 1;
+
+  while ($i <= 3) {
+
+    echo "$i<br>";
+
+    $i++;
+
+  }
+
+  $a = 1;
+
+  while ($a <= 3) :
+
+    echo "$a<br>";
+
+    $a++;
+
+  endwhile;
+************************
+   //Do, While
+
+do {
+
+    echo "$i<br>";
+
+    $i++;
+
+  } while ($i <= 3);
+*************************
+    //For
+    - Expression One Run Once At The First Of The Loop
+    - In The Begining Of Iteration Expression Two Is Checked [If True Continue || Break]
+    - At The End Of Iteration Expression Three Are Executed
+
+for ($i = 1; $i <= 3; $i++) {
+
+    echo "$i<br>";
+
+  }
+
+
+  $index = 1;
+
+  for (;;) :
+
+    if ($index == 4) {
+
+      break;
+
+    }
+
+    echo "$index<br>";
+
+    $index++;
+
+  endfor;
+****************************
+
+   //Foreach
+
+$countries = ["EG", "SA", "QA", "SY"];
+
+  echo '<pre>';
+  print_r($countries);
+  echo '</pre>';
+
+  foreach ($countries as $country) {
+
+    echo $country . "<br>";
+
+  }
+
+  $countries_with_discount = ["EG" => 50, "SA" => 30, "QA" => 50, "SY" => 70];
+
+  echo '<pre>';
+  print_r($countries_with_discount);
+  echo '</pre>';
+
+  foreach ($countries_with_discount as $country => $discount) :
+
+    echo "Country Name Is $country And Discount Is $discount <br>";
+
+  endforeach;
+
+    
+    - Break Ends Execution Of (For, Foreach, While, Do-while or Switch)
+    - Continue Skip Current Iteration
+----------------------------------------------------------------
+- Including Files
+
+    Include
+    Require
+
+include_once("test.php"); // $a = 10;
+
+  echo $a . '<br>';
+
+  $a = 20;
+
+  include_once("test.php"); // $a = 20;
+
+  echo $a . '<br>';
+
+  echo "Continue";
+---------------------------------------------------------------
+
+- Function DRY
+
+  function say_hello_to($someone) {
+    echo "Hello Mr $someone<br>";
+  }
+
+  say_hello_to("Osama");
+  say_hello_to("Ahmed");
+  say_hello_to("Sayed");
+**************************
+    - Default Parameter Value
+
+ function get_data($country = "Private Country", $name = "Private", $age = "Private", $address = "Private Address") {
+    $line_one = "Your Country Is $country And Your Name Is $name <br>";
+    $line_two = "Your Age Is $age And You Live In $address";
+    return $line_one . $line_two;
+  }
+  echo get_data(address: "Cairo");
+*****************************
+
+- Variable Arguments List
+    --- func_num_args()
+    --- func_get_arg(index)
+    --- func_get_args()
+
+ - Spread Syntax In JS
+
+function calculate(...$nums) {
+    echo "Argument Index Number 3 Is " . $nums[3] . "<br>";
+    print_r($nums);
+    $result = 0;
+    foreach ($nums as $num) :
+      $result += $num;
+    endforeach;
+    echo $result;
+  }
+
+  calculate(10, 20, 50, 30, 40, 50, 100);
+
+*****Search*******
+    - PHP Variadic Functions
+    - Splat Operator
+
+***************************
+
+ $group_of_skills = ["HTML", "CSS", "JS", "PHP"];
+
+  function get_data($name, $country = "Private", ...$skills) {
+    echo "Hello $name Your Country Is $country <br>";
+    foreach ($skills as $skill) :
+      echo "-- $skill <br>";
+    endforeach;
+  }
+
+  get_data("Osama", "Egypt", ...$group_of_skills);
+  get_data("Osama", "Egypt", ...["HTML", "CSS", "JS", "PHP"]);
+**************************
+
+Function
+    - Variable Function
+    --- PHP Allow To Use Variable Like Function
+    --- When You Append Parentheses () To Variable Will Look For Function With That Nam
+
+
+    - Function Exists
+    --- function_exists("Func Name")
+
+ function one() {
+    return "One From Function";
+  }
+
+  $func1 = "one";
+
+  echo $func1();
+*************************
+    - Passing Arguments by Reference
+
+  function add_five(&$number) {
+    $number += 5;
+    return $number;
+  }
+
+  $n = 15;
+
+  echo add_five($n) . "<br>"; // 20
+
+  echo $n; // 20
+***************************
+  function calculate($n1, $n2) : int {
+    return $n1 + $n2;
+  }
+  echo gettype(calculate(10.5, 9.5)); // Integer
+***************************
+    - Anonymous Function and Arrow
+
+  // Anonymous Function In Variable
+
+  $say_hello = function() {
+    return "Hello";
+  };
+  $say_hello = fn() => "Hello";
+
+  echo $say_hello();
+
+  echo '<br>#########<br>';
+
+  // Anonymous Function With Parameter In Variable
+
+  $say_hola = function($someone) {
+    return "Hola $someone";
+  };
+  $say_hola = fn($someone) => "Hola $someone";
+
+  echo $say_hola("Osama");
+
+  echo '<br>#########<br>';
+
+  // Inherit Variable From Parent Scope
+
+  $msg = "Hi";
+
+  $say_hi = function($someone) use ($msg) {
+    return "$msg $someone";
+  };
+  $say_hi = fn($someone) => "$msg $someone";
+
+  echo $say_hi("Osama");
+
+  echo '<br>#########<br>';
+
+  // Pass Anonymous Function To Function => array_map
+
+  $nums = [10, 20, 30, 40, 50];
+
+  function add_five($item) {
+    return $item + 5;
+  }
+
+  $nums_after_adding_five = array_map("add_five", $nums);
+
+  echo '<pre>';
+  print_r($nums_after_adding_five);
+  echo '</pre>';
+
+  $nums_after_adding_ten = array_map(function($item) { return $item + 10; }, $nums);
+  $nums_after_adding_ten = array_map(fn($item) => $item + 10, $nums);
+
+  echo '<pre>';
+  print_r($nums_after_adding_ten);
+  echo '</pre>';

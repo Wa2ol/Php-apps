@@ -1,0 +1,116 @@
+<?php 
+  
+echo 'We love php';
+print'We love php'
+
+// single line comment
+# single line comment
+ 
+/*
+  line 1 
+ line  2
+*/
+
+?>
+
+<?='We love php with short tag'?>
+
+
+data types :
+
+bool - int - (float - double) - string - array()
+
+gettype() => print data type
+
+var_dump( (bool) value ) => true / fslse 
+
+nl2br() => print in mul lines
+
+ heredoc => echo <<<"Here"------------Here; 
+
+ nowdoc => echo <<<'Now'--------------Now;
+
+ print_r([
+   "A" => "Ahmed",
+   "B" => "Basem"
+]);
+ ----------------------------------------------------------
+variables :
+
+$varname = "value" 
+
+var var : $$varname => $value
+
+echo "Hello ${$var}" => o/p = $$var
+
+**search** refrances are not pointers 
+
+Assign by value : $b = $a
+
+Assign by ref : $b = &$a
+
+
+**search** pre-defined variables
+--------------------------------------------------------------------------------------------
+
+Constant => define("const.name" , value , case insensitive => bool) => not suppotred in new v
+
+Constant => define("const.name(uppercase)" , value ) => new v
+
+PHP pre-defined constants [case sensitive]:
+- PHP_VERSION
+- PHP_OS_FAMILY
+- PHP_INT_MAX
+- DEFAULT_INCLUDE_PATH
+
+magic constans [case insensitive]:
+- __LINE__
+- __FILE__
+- __DIR__
+
+list of reserved words
+----------------------------------------------------------------
+arithmatic op: 
+ - $a [+]  $b => Addition
+    - $a [-]  $b => Subtraction
+    - $a [*]  $b => Multiplication
+    - $a [/]  $b => Division
+    - $a [%]  $b => Modulus
+    - $a [**] $b => Exponentiation
+    - +$a        => Identity
+    - -$a        => Negation
+
+ Assignment Op :
+
+    - $a [+=]  $b => Addition
+    - $a [-=]  $b => Subtraction
+    - $a [*=]  $b => Multiplication
+    - $a [/=]  $b => Division
+    - $a [%=]  $b => Modulus
+    - $a [**=] $b => Exponentiation
+
+Comparison Op :
+
+    - ==    => Equal
+    - !=    => Not Equal
+    - <>    => Not Equal
+    - ===   => Identical
+    - !==   => Not Identical
+    - >     => Larger Than
+    - >=    => Larger Than Or Equal
+    - <     => Smaller Than
+    - <=    => Smaller Than Or Equal
+    - <=>   => Spaceship [Less Than -1, Equal 0 Or Greater 1]
+
+   ** Search**
+   - How Does PHP Compare Strings With Comparison Operators
+
+
+ Logical Operators:
+    - Compare Conditions
+    and => And => Two Are True
+    &&  => And => Two Are True ["&&" Has A Greater Precedence Than "and"]
+    or  => Or  => One Or Both Is True
+    ||  => Or  => One Or Both Is True ["||" Has A Greater Precedence Than "or"]
+    xor => Xor => One Is True But Not Both
+    !   => Not => Not True
