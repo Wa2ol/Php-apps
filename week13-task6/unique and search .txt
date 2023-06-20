@@ -1,0 +1,58 @@
+<?php
+//Build a function that takes an array that has duplicate elements, returns an array of unique elements.
+//note: do NOT use the built-in function (array_unique)
+
+$Array = [1,3,4,1,3,6,5,4,6,8,2,2];
+
+function unique($givenArray) {
+
+    $uniqueArry = array();
+
+    foreach($givenArray as $val) {
+        
+        foreach($uniqueArry as $uniqueValue) { 
+    
+            if($val === $uniqueValue) {
+                continue 2;
+            }
+        }
+        $uniqueArry[] = $val;
+    }
+    return $uniqueArry;
+};
+
+print_r(unique($Array));
+
+
+
+echo"<br>";
+echo"<br>";
+
+
+
+//Build a function that takes an array and an element as its inputs,
+// the function searches for that element in the array and checks if it exists.
+//If it does, return TRUE. If not, return FALSE
+//note: do NOT use the built-in function (in_array)
+
+$arr = [1,2,3,4,5,6,7,8];
+
+function search($givenArray,$element) {
+
+    $test = false;
+    foreach($givenArray as $val) {
+
+        if($val === $element) {
+            $test = true;
+            break;
+        }
+    };
+    if($test === true) {
+        echo"TRUE";
+    }
+    else {
+        echo"FALSE";
+    }
+};
+
+echo search($arr,10);
