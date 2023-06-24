@@ -1,0 +1,85 @@
+
+<?php
+
+/*Build a basic calculator that can add, subtract and multiply 2 numbers.
+Consider the following:
+- Styling is not required, focus on functionality. 
+- Using OOP concepts is REQUIRED
+[ class, functions, constructor ]
+- Make it work dynamically. 
+As the scenario goes, user enters 2 numbers, chooses the desired operation then hit the submit button to calculate.*/
+
+class Calculator {
+  private $num1;
+  private $num2;
+  
+  public function __construct($num1, $num2) {
+    $this->num1 = $num1;
+    $this->num2 = $num2;
+  }
+  
+  public function add() {
+    return $this->num1 + $this->num2;
+  }
+  
+  public function subtract() {
+    return $this->num1 - $this->num2;
+  }
+  
+  public function multiply() {
+    return $this->num1 * $this->num2;
+  }
+  
+  public function divide() {
+    if($this->num2 == 0) {
+      return "Cannot divide by 0";
+    } else {
+      return $this->num1 / $this->num2;
+    }
+  }
+}
+
+if(isset($_POST['submit'])) {
+  $num1 = $_POST['num1'];
+  $num2 = $_POST['num2'];
+  $operation = $_POST['operation'];
+  
+  $calculator = new Calculator($num1, $num2);
+  
+  switch ($operation) {
+    case 'add':
+      $result = $calculator->add();
+      break;
+    case 'subtract':
+      $result = $calculator->subtract();
+      break;
+    case 'multiply':
+      $result = $calculator->multiply();
+      break;
+    case 'divide':
+      $result = $calculator->divide();
+      break;
+    default:
+      $result = "Invalid operation";
+      break;
+  }
+}
+?>
+
+<form method="post" action="">
+  <input type="number" name="num1" required>
+  <select name="operation" required>
+    <option value="add">+</option>
+    <option value="subtract">-</option>
+    <option value="multiply">*</option>
+    <option value="divide">/</option>
+  </select>
+  <input type="number" name="num2" required>
+  <input type="submit" name="submit" value="Calculate">
+</form>
+
+<?php
+if(isset($result)) {
+  echo "Result: " . $result;
+}
+?>
